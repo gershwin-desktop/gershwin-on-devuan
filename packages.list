@@ -37,3 +37,4 @@ xorg
 
 # Installer
 parted
+e2fsprogs
