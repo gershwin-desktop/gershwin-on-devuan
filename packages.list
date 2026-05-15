@@ -7,7 +7,7 @@ live-config-sysvinit
 sysvinit-core
 
 # Boot
-grub-common
+grub2-common
 #x86_64 grub-pc-bin
 #x86_64 grub-efi-amd64-bin
 #aarch64 grub-efi-arm64-bin
