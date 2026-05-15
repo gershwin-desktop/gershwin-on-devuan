@@ -34,3 +34,6 @@ console-setup
 
 # Display server (Xorg)
 xorg
+
+# Installer
+parted
