@@ -38,3 +38,7 @@ xorg
 # Installer
 parted
 e2fsprogs
+
+# Boot splash
+plymouth
+plymouth-themes
