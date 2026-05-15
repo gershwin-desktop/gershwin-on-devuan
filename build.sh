@@ -81,6 +81,9 @@ grep -q '^lw:5:respawn:/System/Library/Scripts/LoginWindow.sh' "${WORK}/rootfs/e
 # Initialize directory services database
 chroot "${WORK}/rootfs" /System/Library/Tools/dscli init
 
+# Configure boot splash theme
+chroot "${WORK}/rootfs" plymouth-set-default-theme -R spinner
+
 # === Final cleanup ===
 chroot "${WORK}/rootfs" /bin/sh -c "
     apt-get clean
