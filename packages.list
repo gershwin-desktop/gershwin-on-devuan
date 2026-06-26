@@ -42,3 +42,7 @@ e2fsprogs
 # Boot splash
 plymouth
 plymouth-themes
+
+# Sharing
+avahi-daemon
+openssh-server
