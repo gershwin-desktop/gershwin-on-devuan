@@ -84,6 +84,18 @@ chroot "${WORK}/rootfs" /System/Library/Tools/dscli init
 # Configure boot splash theme
 chroot "${WORK}/rootfs" plymouth-set-default-theme -R spinner
 
+# Allow empty password for sshd
+sed -i 's/^[[:space:]#]*PermitEmptyPasswords[[:space:]]*.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
+
+# Configure LoginWindow for auto-login
+mkdir -p /Local/Library/Preferences
+cat > /Local/Library/Preferences/LoginWindow.plist <<\EOF
+{
+    lastLoggedInUser = admin;
+    lastSession = "/System/Library/Scripts/Gershwin.sh";
+}
+EOF
+
 # === Final cleanup ===
 chroot "${WORK}/rootfs" /bin/sh -c "
     apt-get clean
