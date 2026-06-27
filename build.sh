@@ -85,11 +85,11 @@ chroot "${WORK}/rootfs" /System/Library/Tools/dscli init
 chroot "${WORK}/rootfs" plymouth-set-default-theme -R spinner
 
 # Allow empty password for sshd
-sed -i 's/^[[:space:]#]*PermitEmptyPasswords[[:space:]]*.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
+chroot "${WORK}/rootfs" sed -i 's/^[[:space:]#]*PermitEmptyPasswords[[:space:]]*.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
 
 # Configure LoginWindow for auto-login
-mkdir -p /Local/Library/Preferences
-cat > /Local/Library/Preferences/LoginWindow.plist <<\EOF
+mkdir -p "${WORK}/rootfs"/Local/Library/Preferences
+cat > "${WORK}/rootfs"/Local/Library/Preferences/LoginWindow.plist <<\EOF
 {
     lastLoggedInUser = admin;
     lastSession = "/System/Library/Scripts/Gershwin.sh";
