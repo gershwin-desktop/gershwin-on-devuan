@@ -87,6 +87,9 @@ chroot "${WORK}/rootfs" plymouth-set-default-theme -R spinner
 # Allow empty password for sshd
 chroot "${WORK}/rootfs" sed -i 's/^[[:space:]#]*PermitEmptyPasswords[[:space:]]*.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
 
+# Disable PC speaker beeps
+echo "blacklist pcspkr" | tee "${WORK}/rootfs"/etc/modprobe.d/blacklist-pcspkr.conf 
+
 # Configure LoginWindow for auto-login
 mkdir -p "${WORK}/rootfs"/Local/Library/Preferences
 cat > "${WORK}/rootfs"/Local/Library/Preferences/LoginWindow.plist <<\EOF
