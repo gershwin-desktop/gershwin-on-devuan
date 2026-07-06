@@ -48,10 +48,11 @@ xorg
 # Installer
 parted
 e2fsprogs
+dosfstools
 
 # Boot splash
-plymouth
-plymouth-themes
+# plymouth # FIXME: leads to crash when installed?
+# plymouth-themes
 
 # killall
 psmisc
