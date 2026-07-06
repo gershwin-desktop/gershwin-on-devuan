@@ -82,6 +82,9 @@ chroot "${WORK}/rootfs" update-rc.d ssh defaults
 # Enable boot splash
 # chroot "${WORK}/rootfs" update-rc.d plymouth defaults
 
+# Configure boot splash theme
+# chroot "${WORK}/rootfs" plymouth-set-default-theme -R spinner
+
 # Configure inittab for LoginWindow (respawn at runlevel 5)
 sed -i.bak -E 's/^id:[0-9]+:initdefault:/id:5:initdefault:/' "${WORK}/rootfs/etc/inittab"
 grep -q '^lw:5:respawn:/System/Library/Scripts/LoginWindow.sh' "${WORK}/rootfs/etc/inittab" || \
@@ -89,9 +92,6 @@ grep -q '^lw:5:respawn:/System/Library/Scripts/LoginWindow.sh' "${WORK}/rootfs/e
 
 # Initialize directory services database
 chroot "${WORK}/rootfs" /System/Library/Tools/dscli init
-
-# Configure boot splash theme
-chroot "${WORK}/rootfs" plymouth-set-default-theme -R spinner
 
 # Allow password authentication and empty password for sshd
 chroot "${WORK}/rootfs" sed -i 's/^[[:space:]#]*PasswordAuthentication[[:space:]]*.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
