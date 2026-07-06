@@ -59,3 +59,9 @@ sshfs
 
 # Sharing
 openssh-server
+
+# Needed for Network prefPane
+network-manager
+
+# Needed for Audio prefPane
+alsa-utils
