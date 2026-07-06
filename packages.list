@@ -13,6 +13,15 @@ grub2-common
 #aarch64 grub-efi-arm64-bin
 plymouth
 
+# Firmware
+firmware-iwlwifi
+firmware-intel-graphics
+firmware-intel-misc
+firmware-amd-graphics
+firmware-linux-nonfree
+firmware-realtek
+firmware-mediatek
+
 # Networking
 ifupdown
 iproute2
@@ -27,6 +36,7 @@ git
 make
 zsh
 nano
+
 ca-certificates
 gnupg
 locales
@@ -43,10 +53,6 @@ e2fsprogs
 plymouth
 plymouth-themes
 
-# Sharing
-avahi-daemon
-openssh-server
-
 # killall
 psmisc
 
@@ -57,11 +63,13 @@ x11-utils
 udevil
 sshfs
 
-# Sharing
-openssh-server
-
 # Needed for Network prefPane
 network-manager
 
 # Needed for Audio prefPane
 alsa-utils
+
+# Sharing
+avahi-daemon
+openssh-server
+
