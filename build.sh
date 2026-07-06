@@ -80,7 +80,7 @@ chroot "${WORK}/rootfs" update-rc.d avahi-daemon defaults
 chroot "${WORK}/rootfs" update-rc.d ssh defaults
 
 # Enable boot splash
-chroot "${WORK}/rootfs" update-rc.d plymouth defaults
+# chroot "${WORK}/rootfs" update-rc.d plymouth defaults
 
 # Configure inittab for LoginWindow (respawn at runlevel 5)
 sed -i.bak -E 's/^id:[0-9]+:initdefault:/id:5:initdefault:/' "${WORK}/rootfs/etc/inittab"
