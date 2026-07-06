@@ -71,7 +71,16 @@ chroot "${WORK}/rootfs" /bin/sh -c "
 "
 
 # Enable Gershwin services for sysvinit
-chroot "${WORK}/rootfs" update-rc.d dshelper defaults
+chroot "${WORK}/rootfs" update-rc.d dshelper defaults 
+
+# Enable dns-sd browsing
+chroot "${WORK}/rootfs" update-rc.d avahi-daemon defaults
+
+# Enable sshd
+chroot "${WORK}/rootfs" update-rc.d ssh defaults
+
+# Enable boot splash
+chroot "${WORK}/rootfs" update-rc.d plymouth defaults
 
 # Configure inittab for LoginWindow (respawn at runlevel 5)
 sed -i.bak -E 's/^id:[0-9]+:initdefault:/id:5:initdefault:/' "${WORK}/rootfs/etc/inittab"
@@ -84,7 +93,8 @@ chroot "${WORK}/rootfs" /System/Library/Tools/dscli init
 # Configure boot splash theme
 chroot "${WORK}/rootfs" plymouth-set-default-theme -R spinner
 
-# Allow empty password for sshd
+# Allow password authentication and empty password for sshd
+chroot "${WORK}/rootfs" sed -i 's/^[[:space:]#]*PasswordAuthentication[[:space:]]*.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
 chroot "${WORK}/rootfs" sed -i 's/^[[:space:]#]*PermitEmptyPasswords[[:space:]]*.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
 
 # Disable PC speaker beeps
