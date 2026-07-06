@@ -46,3 +46,16 @@ plymouth-themes
 # Sharing
 avahi-daemon
 openssh-server
+
+# killall
+psmisc
+
+# xkill
+x11-utils
+
+# automounter; running 'devmon' will automount removable drives
+udevil
+sshfs
+
+# Sharing
+openssh-server
