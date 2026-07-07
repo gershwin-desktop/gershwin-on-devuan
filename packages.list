@@ -13,6 +13,9 @@ grub2-common
 #aarch64 grub-efi-arm64-bin
 plymouth
 
+# Hardware
+brightnessctl
+
 # Firmware
 firmware-iwlwifi
 firmware-intel-graphics
@@ -21,6 +24,15 @@ firmware-amd-graphics
 firmware-linux-nonfree
 firmware-realtek
 firmware-mediatek
+
+# WLAN
+iw
+wireless-tools
+wpasupplicant
+
+# Sound
+firmware-sof-signed
+alsa-ucm-conf
 
 # Networking
 ifupdown
@@ -36,6 +48,7 @@ git
 make
 zsh
 nano
+file
 
 ca-certificates
 gnupg
@@ -73,4 +86,3 @@ alsa-utils
 # Sharing
 avahi-daemon
 openssh-server
-
