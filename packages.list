@@ -86,3 +86,6 @@ alsa-utils
 # Sharing
 avahi-daemon
 openssh-server
+
+# AppImages using an outdated runtime (e.g., Jitsi Meet desktop app)
+libfuse2t64
