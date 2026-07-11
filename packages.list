@@ -22,8 +22,10 @@ firmware-intel-graphics
 firmware-intel-misc
 firmware-amd-graphics
 firmware-linux-nonfree
+firmware-misc-nonfree
 firmware-realtek
 firmware-mediatek
+#aarch64 raspi-firmware
 
 # WLAN
 iw
@@ -57,6 +59,19 @@ console-setup
 
 # Display server (Xorg)
 xorg
+
+# GPU / graphics drivers
+# xorg pulls the modesetting driver via xserver-xorg-core, but the full video
+# driver set is only a Recommends -- so install it explicitly since the build
+# uses --no-install-recommends. Needed for virtio-gpu under UTM/QEMU as well as
+# real hardware.
+xserver-xorg-video-all
+mesa-utils
+mesa-vulkan-drivers
+libva2
+#x86_64 xserver-xorg-video-intel
+#x86_64 xserver-xorg-video-amdgpu
+#x86_64 intel-media-va-driver-non-free
 
 # Installer
 parted
