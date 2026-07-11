@@ -48,6 +48,7 @@ curl
 wget
 git
 make
+patch
 zsh
 nano
 file
