@@ -65,8 +65,8 @@ echo "==> Installing Gershwin..."
 
 chroot "${WORK}/rootfs" /bin/sh -c "
     git clone https://github.com/gershwin-desktop/gershwin-developer.git /Developer
-    /Developer/Library/Scripts/Bootstrap.sh
-    /Developer/Library/Scripts/Checkout.sh
+    /Developer/Library/Scripts/bootstrap.sh
+    /Developer/Library/Scripts/checkout.sh
     cd /Developer && make install
 "
 
