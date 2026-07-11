@@ -98,7 +98,24 @@ chroot "${WORK}/rootfs" sed -i 's/^[[:space:]#]*PasswordAuthentication[[:space:]
 chroot "${WORK}/rootfs" sed -i 's/^[[:space:]#]*PermitEmptyPasswords[[:space:]]*.*/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
 
 # Disable PC speaker beeps
-echo "blacklist pcspkr" | tee "${WORK}/rootfs"/etc/modprobe.d/blacklist-pcspkr.conf 
+echo "blacklist pcspkr" | tee "${WORK}/rootfs"/etc/modprobe.d/blacklist-pcspkr.conf
+
+# Software-present fallback for virtio-gpu (UTM/QEMU).
+# The guest's virtio-gpu exposes no virgl, so the only GL is llvmpipe. The
+# modesetting driver refuses glamor on llvmpipe and then leaves ShadowFB off,
+# so nothing is ever flushed to the scanout -> black screen once X starts.
+# Force the software-present path. Scoped via MatchDriver so it ONLY touches
+# virtio_gpu -- real Intel/AMD/NVIDIA GPUs keep hardware acceleration.
+mkdir -p "${WORK}/rootfs"/etc/X11/xorg.conf.d
+cat > "${WORK}/rootfs"/etc/X11/xorg.conf.d/20-virtio-gpu.conf <<\EOF
+Section "OutputClass"
+    Identifier  "virtio-gpu software present"
+    MatchDriver "virtio_gpu"
+    Driver      "modesetting"
+    Option      "AccelMethod" "none"
+    Option      "ShadowFB"    "true"
+EndSection
+EOF
 
 # Configure LoginWindow for auto-login
 mkdir -p "${WORK}/rootfs"/Local/Library/Preferences
