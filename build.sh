@@ -23,10 +23,10 @@ debootstrap --arch="${ARCH}" --variant=minbase "${DIST}" "${WORK}/rootfs" "${MIR
 
 # === Step 2: Configure apt sources inside rootfs ===
 cat > "${WORK}/rootfs/etc/apt/sources.list" << EOF
-deb ${MIRROR} ${DIST} main non-free-firmware
-deb ${MIRROR} ${DIST}-security main non-free-firmware
-deb ${MIRROR} ${DIST}-updates main non-free-firmware
-deb ${MIRROR} ${DIST}-backports main non-free-firmware
+deb ${MIRROR} ${DIST} main contrib non-free non-free-firmware
+deb ${MIRROR} ${DIST}-security main contrib non-free non-free-firmware
+deb ${MIRROR} ${DIST}-updates main contrib non-free non-free-firmware
+deb ${MIRROR} ${DIST}-backports main contrib non-free non-free-firmware
 EOF
 
 # === Step 2b: Prepare chroot ===
