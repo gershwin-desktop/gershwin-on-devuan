@@ -126,6 +126,9 @@ cat > "${WORK}/rootfs"/Local/Library/Preferences/LoginWindow.plist <<\EOF
 }
 EOF
 
+# Generate all locales to prevent errors such as "LC_ALL: cannot change locale"
+chroot "${WORK}/rootfs"  dpkg-reconfigure --frontend=noninteractive locales
+
 # === Final cleanup ===
 chroot "${WORK}/rootfs" /bin/sh -c "
     apt-get clean
